@@ -9,7 +9,7 @@ public class Principale {
 	private static float a = 50;
 	private static float b = 6;
 
-	private static EnvoiMessageSOAP unAppel = new EnvoiMessageSOAP();
+	private static SOAPFactory unAppel = new SOAPFactory();
 /*
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
