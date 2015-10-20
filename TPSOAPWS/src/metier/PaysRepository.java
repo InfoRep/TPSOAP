@@ -43,7 +43,8 @@ public class PaysRepository {
 		
 		if (rs.size() > 0)
 		{ 
-			noms.add(rs.get(0).toString());			
+			for (int i = 0; i < rs.size(); ++i)
+				noms.add(rs.get(i).toString());			
 		}
 		
 		return noms;

@@ -1,6 +1,6 @@
 package meserreurs;
 
-public class MonException  extends Exception  implements java.io.Serializable {
+public class MonException extends Exception  implements java.io.Serializable {
     private String message;
     private String type;
 

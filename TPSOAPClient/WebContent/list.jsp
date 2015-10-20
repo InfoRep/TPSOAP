@@ -12,14 +12,21 @@
 <body>
 	<h3>Choix des pays</h3>
 	
-	<form action="">
+	<form action="Controleur?action=viewPays" method="POST">
 		Sélectionnez le pays que vous souhaitez parmi la liste suivante :
 		<br /> 
-		<select name="">
-			<option>Bouh</option>
+		<select name="pays">
+			<c:forEach items="${listNomPays}" var="item" >
+				<option value="${item}">${item}</option>
+			</c:forEach>
 		</select>
 		<br />
 		<input type="submit" value="Valider" />
 	</form>	
+	
+	<c:if test="${nomPays = ''}">
+		<br />
+		${nomPays} a été selectionné
+	</c:if>
 </body>
 </html>

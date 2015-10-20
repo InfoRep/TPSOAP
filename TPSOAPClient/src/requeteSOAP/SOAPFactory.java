@@ -11,12 +11,15 @@ import javax.xml.soap.SOAPException;
 import javax.xml.soap.SOAPBody;
 import javax.xml.soap.SOAPElement;
 import javax.xml.transform.*;
-import javax.xml.transform.stream.*;
+
+import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 
 import org.w3c.dom.Node;
+import org.w3c.dom.NodeList;
 
 import meserreurs.MonException;
 
@@ -48,15 +51,15 @@ public class SOAPFactory {
 				}
 			
 			message.saveChanges(); // On sauve le message
+			
+			return message;
 		} catch (Exception e)
 		{
 			throw new MonException(e.getMessage());
 		}
-		
-		return null;
 	}
 	
-	public static void sendReceive(String destination, SOAPMessage message) throws SOAPException, TransformerException
+	public static List<String> sendReceive(String destination, SOAPMessage message) throws SOAPException, TransformerException
 	{
 		//creation de la connexion
 		SOAPConnectionFactory soapConnFactory = SOAPConnectionFactory.newInstance();
@@ -67,26 +70,33 @@ public class SOAPFactory {
 		SOAPPart soapPart = reply.getSOAPPart();
 		SOAPBody body = soapPart.getEnvelope().getBody();
 		
-		
 		// on examine les éléments renvoyés dans une liste
-		Iterator iter = body.getChildElements();		
-		Node resultOuter = ((Node) iter.next()).getFirstChild();
-		Node result = resultOuter.getFirstChild();
+		Iterator iter = body.getChildElements();	
+		Node resultOuter = ((Node) iter.next());
+		NodeList nl = resultOuter.getChildNodes();
 		
-		System.out.println(result.getNodeValue());
+		List<String> results = new ArrayList<>();
+		for (int i = 0; i < nl.getLength(); ++i)
+		{
+			Node result = nl.item(i).getFirstChild();
+			//System.out.println(result.getNodeValue());
+			results.add(result.getNodeValue());
+		}
 		
 		// on crée le transformeur pour visualiser le message
-		TransformerFactory transformerFactory = TransformerFactory.newInstance();
-		Transformer transformer = transformerFactory.newTransformer();
+		//TransformerFactory transformerFactory = TransformerFactory.newInstance();
+		//Transformer transformer = transformerFactory.newTransformer();
 		
 		// On extrait le contenu du corps BODY
-		Source sourceContent = reply.getSOAPPart().getContent();
+		//Source sourceContent = reply.getSOAPPart().getContent();
 		
 		// Sortie de la transformation
-		StreamResult unresult = new StreamResult(System.out);
-		transformer.transform(sourceContent, unresult);
+		//StreamResult unresult = new StreamResult(System.out);
+		//transformer.transform(sourceContent, unresult);
 		
 		// on ferme la connexion
 		connection.close();
+		
+		return results;
 	}
 }
