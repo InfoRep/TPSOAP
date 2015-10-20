@@ -5,19 +5,21 @@
 <html>
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-	<title>Accueil</title>
+	<title>Liste des pays</title>
 	
 	<link rel="stylesheet" type="text/css" href="css/layout.css">
 </head>
 <body>
-	<h3 class="text-center">Application sur les pays qui utilise un webservice SOAP</h3>
+	<h3>Choix des pays</h3>
 	
-	<div class="text-center">
-		<a href="Controleur?action=listPays">=> Cliquez ici pour accéder à la liste des pays <=</a>
-	</div>	
-	<br />
-	<div class="text-center">
-		<img src="images/map.png" width="200" alt="map" />&nbsp;&nbsp;&nbsp;<img src="images/carte_coeur.png" width="200" alt="carte" />
-	</div>
+	<form action="">
+		Sélectionnez le pays que vous souhaitez parmi la liste suivante :
+		<br /> 
+		<select name="">
+			<option>Bouh</option>
+		</select>
+		<br />
+		<input type="submit" value="Valider" />
+	</form>	
 </body>
 </html>

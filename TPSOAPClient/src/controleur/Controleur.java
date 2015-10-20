@@ -13,6 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 public class Controleur extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private static final String VIEW_PAYS = "viewPays";
+	private static final String LIST_PAYS = "listPays";
 	private static final String ERROR_PAGE = "/index.jsp";
 	
 	@Override
@@ -21,8 +22,13 @@ public class Controleur extends HttpServlet {
 		String destinationPage = ERROR_PAGE;
 		
 		if (VIEW_PAYS.equals(actionName))
-		{
+		{ //Voir un pays
 			
+		} else if (LIST_PAYS.equals(actionName))
+		{ //Liste des pays
+			
+			
+			destinationPage = "/list.jsp";
 		} else 
 		{ // Aucune action = page par defaut = page d'accueil
 			destinationPage = "/index.jsp";
