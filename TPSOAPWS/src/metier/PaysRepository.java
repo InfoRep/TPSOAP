@@ -17,7 +17,7 @@ public class PaysRepository {
 	 */
 	public static Pays find(String id) throws MonException, ParseException
 	{
-		String mysql = "SELECT * FROM pays WHERE nomPays = '"+id+"'";
+		String mysql = "SELECT * FROM pays WHERE nom_pays = '"+id+"'";
 		
 		List<Object> rs = DialogueBd.lecture(mysql); 
 		Pays pays = null;
@@ -26,9 +26,9 @@ public class PaysRepository {
 		{ //retourner le pays
 			// il faut redecouper la liste pour retrouver les lignes
 			pays = new Pays();
-			pays.setnomPays(rs.get(0).toString());
-			pays.setnomCapitale(rs.get(1).toString());
-			pays.setnbHabitants( Integer.parseInt(rs.get(2).toString()));
+			pays.setNomPays(rs.get(0).toString());
+			pays.setNomCapitale(rs.get(1).toString());
+			pays.setNbHabitants( Integer.parseInt(rs.get(2).toString()));
 		}
 		
         return pays;

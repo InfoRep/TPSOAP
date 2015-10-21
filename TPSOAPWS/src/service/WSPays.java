@@ -14,8 +14,7 @@ public class WSPays {
 
 		try {
 			pays = PaysRepository.getAllName();
-			for (String s : pays)
-				System.out.println("WS pays name >> "+s);
+			System.out.println("WS >> taille liste = "+pays.size());
 		} catch (Exception e) {
 			System.out.println(e);
 			pays = new ArrayList<String>();
@@ -24,8 +23,18 @@ public class WSPays {
 		return pays;
 	}
 	
-	public Pays getPays(String nomPays) {
+	public Pays getPays(String nomPays) 
+	{
+		Pays pays = null;
+		try {
+			System.out.println("WS >> search for "+nomPays);
+			pays = PaysRepository.find(nomPays);
+			
+			System.out.println("WS >> pays found: "+pays);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 		
-		return null;
+		return pays;
 	}
 }

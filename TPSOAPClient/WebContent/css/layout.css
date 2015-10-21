@@ -14,3 +14,41 @@ a:hover {
 .text-center {
 	text-align:center;
 }
+
+/* class choixPays */
+.choixPays * {
+	margin-top:5px;
+	margin-bottom:5px;
+	padding:5px;
+}
+
+.choixPays hr {
+	margin:0;
+	padding:0;
+}
+
+.choixPays button {
+	margin-left:30px;
+}
+
+.choixPays h3 {
+	color:blue;
+}
+
+/* class viewPays */
+.viewPays h3 {
+	color:green;
+}
+
+.viewPays ul li {
+	padding:5px;
+}
+
+.viewPays table tr td {
+	padding-left:30px;
+}
+
+.viewPays table tr td {
+	padding-bottom:10px;
+}
+

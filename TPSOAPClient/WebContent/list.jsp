@@ -10,23 +10,47 @@
 	<link rel="stylesheet" type="text/css" href="css/layout.css">
 </head>
 <body>
-	<h3>Choix des pays</h3>
+	<div class="choixPays">
+		<h3>
+			Choix des pays
+			<hr />
+		</h3>
+		
+		<form action="Controleur?action=listPays" method="POST">
+			Sélectionnez le pays que vous souhaitez parmi la liste suivante :
+			<br /> 
+			<select name="pays">
+				<c:forEach items="${listNomPays}" var="item" >
+					<option value="${item}">${item}</option>
+				</c:forEach>
+			</select>
+			<br />
+			<button>Obtenir détails</button>
+		</form>	
+	</div>
 	
-	<form action="Controleur?action=viewPays" method="POST">
-		Sélectionnez le pays que vous souhaitez parmi la liste suivante :
-		<br /> 
-		<select name="pays">
-			<c:forEach items="${listNomPays}" var="item" >
-				<option value="${item}">${item}</option>
-			</c:forEach>
-		</select>
-		<br />
-		<input type="submit" value="Valider" />
-	</form>	
-	
-	<c:if test="${nomPays = ''}">
-		<br />
-		${nomPays} a été selectionné
+	<c:if test="${not empty pays}">
+		<div class="viewPays" border="0">
+			<h3>
+				Plus d'informations concernant ${pays.nomPays }
+				<hr />
+			</h3>
+			<table style="float:left">
+				<tr>
+					<td>
+						<u>Capitale</u>
+					</td>
+					<td>${pays.nomCapitale }</td>
+				</tr>
+				<tr>
+					<td><u>Nombre d'habitants</u></td>
+					<td>${pays.nbHabitants }</td>
+				</tr>
+			</table>
+			<div style="float:right">
+				<img src="http://maps.google.com/maps/api/staticmap?language=fr&size=800x300&zoom=4&maptype=terrain&sensor=false&center=${pays.nomPays}" alt="map monde google" />
+			</div>
+		</div>
 	</c:if>
 </body>
 </html>
